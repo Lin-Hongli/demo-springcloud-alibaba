@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.lhl.xxxcloud</groupId>
+        <artifactId>xxxcloud-parent</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>com.lhl.xxxcloud.common</groupId>
+    <artifactId>xxxcloud-common</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>xxxcloud-common</name>
+    <description>xxxcloud项目 common公共模块</description>
+
+    <modules>
+        <module>xxxcloud-common-base</module>
+        <module>xxxcloud-common-core</module>
+        <module>xxxcloud-common-util</module>
+    </modules>
+    <!--<properties>
+        <java.version>1.8</java.version>
+        <lombok.version>1.18.4</lombok.version>
+        <jxl.version>2.6.12</jxl.version>
+        <orika.core.version>1.5.4</orika.core.version>
+        <fastjson.version>1.2.62</fastjson.version>
+        <httpClient.version>4.5.3</httpClient.version>
+        <dom4j.version>1.6.1</dom4j.version>
+        <common-io.version>2.5</common-io.version>
+
+        <joda.time.version>2.9.9</joda.time.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <pinyin4j.version>2.5.1</pinyin4j.version>
+        <commons.codec.version>1.9</commons.codec.version>
+    </properties>
+-->
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!--  spring-core
+         <dependency>
+             <groupId>org.springframework</groupId>
+             <artifactId>spring-core</artifactId>
+             <version>5.2.5.RELEASE</version>
+         </dependency>
+         &lt;!&ndash; dom4j &ndash;&gt;
+         <dependency>
+             <groupId>dom4j</groupId>
+             <artifactId>dom4j</artifactId>
+             <version>${dom4j.version}</version>
+         </dependency>
+         &lt;!&ndash; httpclient start &ndash;&gt;
+         <dependency>
+             <groupId>org.apache.httpcomponents</groupId>
+             <artifactId>httpclient</artifactId>
+             <version>${httpClient.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.httpcomponents</groupId>
+             <artifactId>httpmime</artifactId>
+             <version>${httpClient.version}</version>
+         </dependency>
+         &lt;!&ndash; httpclient end &ndash;&gt;
+         &lt;!&ndash; lombok &ndash;&gt;
+         <dependency>
+             <groupId>org.projectlombok</groupId>
+             <artifactId>lombok</artifactId>
+             <version>${lombok.version}</version>
+         </dependency>
+         &lt;!&ndash; Java Bean 拷贝 &ndash;&gt;
+         <dependency>
+             <groupId>ma.glasnost.orika</groupId>
+             <artifactId>orika-core</artifactId>
+             <version>${orika.core.version}</version>
+         </dependency>
+         &lt;!&ndash; fastjson &ndash;&gt;
+         <dependency>
+             <groupId>com.alibaba</groupId>
+             <artifactId>fastjson</artifactId>
+             <version>${fastjson.version}</version>
+         </dependency>
+         &lt;!&ndash; commons-io &ndash;&gt;
+         <dependency>
+             <groupId>commons-io</groupId>
+             <artifactId>commons-io</artifactId>
+             <version>${common-io.version}</version>
+         </dependency>
+
+
+         &lt;!&ndash; 在Java中处理日期和时间是很常见的需求，基础的工具类就是我们熟悉的Date和Calendar，然而这些工具类的api使用并不是很方便和强大，于是就诞生了Joda-Time这个专门处理日期时间的库。&ndash;&gt;
+         <dependency>
+             <groupId>joda-time</groupId>
+             <artifactId>joda-time</artifactId>
+             <version>${joda.time.version}</version>
+         </dependency>
+
+         <dependency>
+             <groupId>commons-lang</groupId>
+             <artifactId>commons-lang</artifactId>
+             <version>${commons-lang.version}</version>
+         </dependency>
+
+         <dependency>
+             <groupId>commons-io</groupId>
+             <artifactId>commons-io</artifactId>
+             <version>${common-io.version}</version>
+         </dependency>
+
+         &lt;!&ndash; fastJson用于对JSON格式的数据进行解析和打包 &ndash;&gt;
+         <dependency>
+             <groupId>com.alibaba</groupId>
+             <artifactId>fastjson</artifactId>
+             <version>${fastjson.version}</version>
+         </dependency>
+
+         &lt;!&ndash; 用于转换拼音，调用PinyinHelper类的静态工具方法 &ndash;&gt;
+         <dependency>
+             <groupId>com.belerweb</groupId>
+             <artifactId>pinyin4j</artifactId>
+             <version>${pinyin4j.version}</version>
+         </dependency>
+
+         &lt;!&ndash; redis &ndash;&gt;
+         <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-data-redis</artifactId>
+         </dependency>
+
+         &lt;!&ndash; 用于摘要运算、编码解码 &ndash;&gt;
+         <dependency>
+             <groupId>commons-codec</groupId>
+             <artifactId>commons-codec</artifactId>
+             <version>${commons.codec.version}</version>
+         </dependency>
+
+         &lt;!&ndash; JPA的宗旨是为POJO提供持久化标准规范，比如@Table注解 &ndash;&gt;
+         <dependency>
+             <groupId>javax.persistence</groupId>
+             <artifactId>persistence-api</artifactId>
+             <version>1.0</version>
+         </dependency>
+
+         &lt;!&ndash; thymeleaf：前后端数据交互模板引擎 &ndash;&gt;
+         <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+         </dependency>-->
+
+
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

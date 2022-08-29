@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.lhl.xxxcloud</groupId>
+        <artifactId>xxxcloud-parent</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>com.lhl.xxxcloud.service.api</groupId>
+    <artifactId>xxxcloud-service-api</artifactId>
+    <packaging>pom</packaging>
+
+    <name>xxxcloud-service-api</name>
+    <description>xxxcloud项目Api模块</description>
+
+    <modules>
+        <module>xxxcloud-service-api-demo</module>
+        <module>xxxcloud-service-api-order</module>
+        <module>xxxcloud-service-api-payment</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.lhl.xxxcloud.common</groupId>
+            <artifactId>xxxcloud-common-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+    </dependencies>
+</project>

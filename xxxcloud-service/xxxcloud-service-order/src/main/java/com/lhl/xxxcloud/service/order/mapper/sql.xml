@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <!--order建表语句-->
+    <order>
+        SET NAMES utf8mb4;
+        SET FOREIGN_KEY_CHECKS = 0;
+        CREATE DATABASE IF NOT EXISTS `xxxcloud_demo`;
+        use `xxxcloud_demo`;
+        DROP TABLE IF EXISTS `order`;
+
+        CREATE TABLE `order` (
+        `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
+        `create_id` bigint(20) DEFAULT NULL COMMENT '创建人Id',
+        `update_id` bigint(20) DEFAULT NULL COMMENT '更新人Id',
+        `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+        `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+        PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    </order>
+    <!-- 常数代码列表 -->
+    <pageList>
+        <![CDATA[
+            SELECT
+                id,
+                create_id as createId,
+                create_time as createTime,
+                update_id as updateId,
+                update_time as updateTime,
+                deleted
+            FROM
+                `xxx`
+            WHERE
+                deleted = 0
+        ]]>
+    </pageList>
+
+</root>
