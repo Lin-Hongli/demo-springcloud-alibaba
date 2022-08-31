@@ -4,6 +4,8 @@ import com.lhl.util.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,10 +16,21 @@ import javax.validation.constraints.NotEmpty;
 /**
  * @author LinHongli
  */
+@RefreshScope
 @RestController
 @RequestMapping("/demo")
 @Api("非restful风格的controller")
 public class DemoController {
+    @Value("${user.name}")
+    private String name;
+    @Value("${user.age}")
+    private String age;
+
+    @GetMapping("/config")
+    public String testConfig() {
+        String config = "name：" + name + "age:" + age;
+        return config;
+    }
     //@Resource
     //IOrderFeignClient orderFeignClient;
 

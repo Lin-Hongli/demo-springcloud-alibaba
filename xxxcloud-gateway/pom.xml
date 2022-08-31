@@ -3,18 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.lhl.xxxcloud</groupId>
         <artifactId>xxxcloud-parent</artifactId>
+        <groupId>com.lhl.xxxcloud</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lhl.xxxcloud.eureka</groupId>
-    <artifactId>xxxcloud-eureka</artifactId>
+    <artifactId>xxxcloud-gateway</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
-
-    <name>xxxcloud-eureka</name>
-    <description>xxxcloud项目eureka模块</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -22,18 +19,14 @@
     </properties>
 
     <dependencies>
-        <!--<dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka-server</artifactId>
-        </dependency>-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-<!--        </dependency>-->
-
     </dependencies>
+
 </project>

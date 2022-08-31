@@ -28,7 +28,7 @@
         <module>xxxcloud-common</module>
         <module>xxxcloud-service</module>
         <module>xxxcloud-service-api</module>
-        <module>xxxcloud-eureka</module>
+        <module>xxxcloud-gateway</module>
     </modules>
 
     <properties>

@@ -1,24 +1,25 @@
-eureka:
-  instance:
-    # 开启使用IP地址进行注册，方便查看服务使用的服务器IP
-    prefer-ip-address: true
-    # 修改实例ID，便于区分每台服务实例，实际调用还是使用spring.application.name
-    instance-id: ${spring.application.name}:${server.port}
-    #Eureka客户端向服务端发送心跳的时间间隔，单位为秒(默认是30秒)
-    lease-renewal-interval-in-seconds: 1 #方便测试改为1秒
-    #Eureka服务端在收到最后一次心跳后等待时间上限，单位为秒(默认是90秒)，超时将剔除服务
-    lease-expiration-duration-in-seconds: 2 #方便测试改为2秒
-  client:
-    #该客户端是否可用
-    enabled: true
-    #是否从EurekaServer抓取已有的注册信息，默认为true。单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
-    fetch-registry: true
-    service-url:
-      # eureka服务地址，如果做集群，需要指定其他eureka地址
-      #单机版
-      defaultZone: http://localhost:8761/eureka/
-      # 集群版
-      #defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848   # 注册中心地址
+      config:
+        server-addr: 127.0.0.1:8848  # 配置中心地址
+        file-extension: yaml    # 配置中心的配置格式
+    sentinel:
+      transport:
+        #sentinel控制台地址
+        dashboard: localhost:8080
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        exclude:
+
+#开启熔断机制，默认false
 feign:
-  hystrix:
-    enabled: false
+  sentinel:
+    enabled: true
+
+

@@ -5,6 +5,8 @@ import com.lhl.xxxcloud.service.api.order.feign.hystrix.OrderFeignClientHystrix;
 import com.lhl.xxxcloud.service.api.order.model.dto.OrderDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -15,9 +17,22 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author LinHongli
  */
-@FeignClient(value = "demo-service-order",fallback = OrderFeignClientHystrix.class)
+@FeignClient(value = "xxxcloud-service-order",fallback = OrderFeignClientHystrix.class)
 public interface IOrderFeignClient {
-    String API_PREFIX = "/api/order";
+    String API_PREFIX = "/order";
+
+    @GetMapping("/test")
+    Result<Object> test();
+
+    /**
+     * 创建订单
+     * @param orderDTO Order传输对象
+     * @return Result<Object>
+     */
+    @PostMapping(API_PREFIX+"/create")
+    //@GetMapping("/create")
+    Result<Object> create(@RequestBody OrderDTO orderDTO);
+
 
     /**
      * 获取用户信息
@@ -26,12 +41,4 @@ public interface IOrderFeignClient {
      */
     @GetMapping(API_PREFIX+"/getOrder")
     Result<Object> getOrder(@RequestParam("id") Long id);
-
-    /**
-     * 保存
-     * @param orderDTO Order传输对象
-     * @return Result<Object>
-     */
-    @GetMapping(API_PREFIX+"/save")
-    Result<Object> save(OrderDTO orderDTO);
 }

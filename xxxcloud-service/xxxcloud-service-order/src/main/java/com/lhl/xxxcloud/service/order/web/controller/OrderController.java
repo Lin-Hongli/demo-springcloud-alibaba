@@ -47,6 +47,11 @@ public class OrderController {
     @Resource
     private IOrderService orderService;
 
+    @GetMapping("/payOrder")
+    @ApiOperation(value = "支付订单", notes = "支付订单")
+    public Result<Object> payOrder(Integer num) {
+        return orderService.payOrder(num);
+    }
 
 
     /**
@@ -170,11 +175,5 @@ public class OrderController {
         BeanUtils.copyProperties(userQuery,user);
         return Result.success(orderService.updateByName(user));
     }*/
-
-    @GetMapping("/payOrder")
-    @ApiOperation(value = "支付订单", notes = "支付订单")
-    public Result<Object> payOrder(Integer num) {
-        return orderService.payOrder(num);
-    }
 
 }

@@ -18,5 +18,10 @@
             <groupId>com.lhl.xxxcloud.service.api</groupId>
             <artifactId>xxxcloud-service-api-payment</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.lhl.xxxcloud.service.api</groupId>
+            <artifactId>xxxcloud-service-api-order</artifactId>
+        </dependency>
     </dependencies>
 </project>

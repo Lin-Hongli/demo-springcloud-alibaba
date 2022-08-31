@@ -3,7 +3,6 @@ spring:
     active: @profileActive@
   application:
     name: @pom.artifactId@
-
 ######mybatis-plus
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml

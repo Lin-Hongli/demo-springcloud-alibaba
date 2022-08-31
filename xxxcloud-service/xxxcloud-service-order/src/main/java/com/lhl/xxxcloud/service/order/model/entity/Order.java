@@ -21,7 +21,7 @@ import javax.naming.Name;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@TableName("order")
+@TableName("t_order")
 public class Order extends BaseEntity {
 
     private String name;
