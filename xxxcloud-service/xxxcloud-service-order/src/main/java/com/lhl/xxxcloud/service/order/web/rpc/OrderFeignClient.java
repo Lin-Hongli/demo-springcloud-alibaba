@@ -6,10 +6,9 @@ import com.lhl.xxxcloud.service.api.order.feign.IOrderFeignClient;
 import com.lhl.xxxcloud.service.api.order.model.dto.OrderDTO;
 import com.lhl.xxxcloud.service.order.model.entity.Order;
 import com.lhl.xxxcloud.service.order.service.IOrderService;
+import io.seata.core.context.RootContext;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -22,6 +21,7 @@ import javax.annotation.Resource;
  * @author LinHongli
  */
 @RestController
+@Slf4j
 public class OrderFeignClient implements IOrderFeignClient {
     @Resource
     private IOrderService orderService;
@@ -34,6 +34,7 @@ public class OrderFeignClient implements IOrderFeignClient {
 
     @Override
     public Result<Object> create(OrderDTO orderDTO) {
+        log.info("Seata全局事务id=================>{}", RootContext.getXID());
         Order order = new Order();
         BeanUtils.copyProperties(orderDTO,order);
         orderService.save(order);

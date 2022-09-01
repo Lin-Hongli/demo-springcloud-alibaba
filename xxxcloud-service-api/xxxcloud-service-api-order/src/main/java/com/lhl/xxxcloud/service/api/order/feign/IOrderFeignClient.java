@@ -30,7 +30,6 @@ public interface IOrderFeignClient {
      * @return Result<Object>
      */
     @PostMapping(API_PREFIX+"/create")
-    //@GetMapping("/create")
     Result<Object> create(@RequestBody OrderDTO orderDTO);
 
 

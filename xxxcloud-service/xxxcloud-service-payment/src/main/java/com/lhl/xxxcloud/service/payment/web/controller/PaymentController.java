@@ -30,6 +30,7 @@ public class PaymentController {
     public Result<Object> test() {
         return orderFeignClient.test();
     }
+
     @GetMapping(value = "/create")
     public Result<Object> create() {
         return paymentService.create();
