@@ -9,4 +9,4 @@ EXPOSE 88
 # 将主机中的jar包添加到镜像中
 ADD  target/xxxcloud-gateway-1.0.jar xxxcloud-gateway-1.0.jar
 # 运行jar包
-ENTRYPOINT ["java", "-jar","xxxcloud-gateway-1.0.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=sit", "-jar","xxxcloud-gateway-1.0.jar"]
