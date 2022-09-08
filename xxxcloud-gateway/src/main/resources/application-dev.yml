@@ -12,6 +12,13 @@ spring:
             - StripPrefix=1 #截去前面n个路径，剩余部分和uri的值拼接作为转发地址
           predicates: # 路由断言，判断请求是否符合规则
             - Path=/xxxcloud-service-order/** # 路径断言，判断路径是否是以/item开头，如果是则符合
+        - id: xxxcloud-service-payment
+          uri: lb://xxxcloud-service-payment
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/xxxcloud-service-payment/**
+
 
 
         - id: orderservice
