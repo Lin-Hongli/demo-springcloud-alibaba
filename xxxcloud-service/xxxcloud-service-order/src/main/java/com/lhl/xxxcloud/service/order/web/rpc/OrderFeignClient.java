@@ -39,7 +39,7 @@ public class OrderFeignClient implements IOrderFeignClient {
         BeanUtils.copyProperties(orderDTO,order);
         orderService.save(order);
         //int i=1/0;
-        return Result.fail(ErrorCodeEnum.A0001);
+        return Result.success();
     }
 
     @Override

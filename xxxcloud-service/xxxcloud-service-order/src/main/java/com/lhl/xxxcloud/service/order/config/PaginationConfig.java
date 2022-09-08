@@ -22,7 +22,6 @@ public class PaginationConfig {
     public PaginationInterceptor paginationInterceptor(){
         System.out.println(Runtime.getRuntime().totalMemory()/1024/1024);
         System.out.println("最大内存。。。。。。。。"+Runtime.getRuntime().maxMemory()/1024/1024);
-        log.error("aaaaaaaaaaaa");
         return new PaginationInterceptor();
     }
 }
