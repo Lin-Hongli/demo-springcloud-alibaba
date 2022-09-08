@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  xxxcloud-gateway:
+    # 指定镜像名
+    image: java/xxxcloud-gateway:1.0.0-SNAPSHOT
+    # 指定容器名称
+    container_name: xxxcloud-gateway
+    privileged: true
+    build:
+      context: .
+      dockerfile: DockerFile #指定dockerFile文件
+    environment:
+      - NACOS_HOST=nacos
+    # 指定服务运行的端口
+    ports:
+      - 88:88
+    # 指定容器中需要挂载的文件
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /logs:/logs
+    networks:
+      - dev_net
+
+networks:
+  dev_net: 
+    external:
+      name: app_net

@@ -1,0 +1,12 @@
+# 以jdk8为基础镜像
+FROM openjdk:8
+# 描述
+LABEL description="Java 8"
+
+# 暴露接口
+EXPOSE 88
+
+# 将主机中的jar包添加到镜像中
+ADD  /usr/local/jenkins/workspace/test/xxxcloud-gateway/target/xxxcloud-gateway-1.0.jar xxxcloud-gateway-1.0.jar
+# 运行jar包
+ENTRYPOINT ["java", "-jar","xxxcloud-gateway-1.0.jar"]
