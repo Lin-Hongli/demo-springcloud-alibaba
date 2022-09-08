@@ -1,0 +1,24 @@
+server:
+  port: 9000
+spring:
+  ###数据库
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:3306/demo_xxxcloud_alibaba?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  ###JSON工具
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    #相当于：@JsonInclude(JsonInclude.Include.NON_NULL)
+    default-property-inclusion: non_null
+######日志
+logging:
+  #日志配置的文件位置，如果是：resource下的log4j2-spring.xml则不用配置
+  config: classpath:log/log4j2-dev.xml
+  #包配置及日志级别
+  level:
+    com.lhl: trace
