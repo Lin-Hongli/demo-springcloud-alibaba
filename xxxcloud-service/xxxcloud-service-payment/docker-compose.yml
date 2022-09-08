@@ -6,6 +6,7 @@ services:
     # 指定容器名称
     container_name: xxxcloud-service-payment
     privileged: true
+    restart: always
     build:
       context: .
       dockerfile: DockerFile #指定dockerFile文件
