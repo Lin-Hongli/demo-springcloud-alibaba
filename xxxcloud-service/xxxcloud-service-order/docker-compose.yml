@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  xxxcloud-service-order:
+    # 指定镜像名
+    image: java/xxxcloud-service-order:1.0.0-SNAPSHOT
+    # 指定容器名称
+    container_name: xxxcloud-service-order
+    privileged: true
+    build:
+      context: .
+      dockerfile: DockerFile #指定dockerFile文件
+    environment:
+      - NACOS_HOST=nacos
+      - MYSQL_HOST=mysql
+    # 指定服务运行的端口
+    ports:
+      - 8000:8000
+    # 指定容器中需要挂载的文件
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /logs:/logs
+    networks:
+      - dev_net
+
+networks:
+  dev_net:
+    external:
+      name: app_net

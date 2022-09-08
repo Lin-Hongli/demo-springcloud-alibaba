@@ -1,0 +1,115 @@
+version: '3.7'
+services:
+  jenkins:
+    #构建出来的镜像名
+    image: jenkins/jenkins
+    #启动的容器名
+    container_name: jenkins
+    restart: always
+    #让container内拥有真正的root权限。否则，container内的root只是外部的一个普通用户权限
+    privileged: true
+    user: root
+    environment:
+      LANG: C.UTF-8
+      TZ: Asia/Shanghai
+      JAVA_OPTS: '-Dsun.jnu.encoding=UTF-8,-Dfile.encoding=UTF-8'
+    #暴露的端口
+    ports:
+      - 9999:8080
+      - 50000:50000
+    #挂载目录
+    volumes:
+      - /usr/bin/docker:/usr/bin/docker
+      - /usr/bin/docker-compose:/usr/bin/docker-compose
+      - /var/run/docker.sock:/var/run/docker.sock 
+      - /etc/localtime:/etc/localtime
+      - /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7
+      - /usr/local/jenkins:/var/jenkins_home
+      - /usr/local/maven:/usr/local/maven
+      - /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.342.b07-1.el7_9.x86_64:/usr/local/java
+      - /data/app:/data/app
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - 3306:3306
+    restart: always
+    privileged: true
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+    volumes:
+      - /usr/local/mysql/data/db:/var/lib/mysql
+      - /usr/local/mysql/conf:/etc/mysql/conf.d
+    networks:
+      - dev_net
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379
+    restart: always
+    privileged: true
+    command: redis-server --appendonly yes
+    volumes:
+      - /usr/local/redis/data:/data
+      - /usr/local/redis/conf/redis.conf:/etc/redis/redis.conf
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    privileged: true
+    volumes:
+      - /usr/local/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - /usr/local/nginx/conf/cert:/etc/nginx/cert
+      - /usr/local/nginx/conf/conf.d:/etc/nginx/conf.d
+      - /usr/local/nginx/www:/var/www
+      - /usr/local/nginx/html:/usr/share/nginx/html
+      - /usr/local/nginx/logs:/var/log/nginx
+      - /etc/localtime:/etc/localtime
+
+  nacos:
+    image: nacos/nacos-server:v2.1.1
+    container_name: nacos
+    restart: always
+    privileged: true
+    environment:
+      #PREFER_HOST_MODE: ip
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MODE: standalone
+      MYSQL_SERVICE_HOST: mysql #这里指向mysql镜像名
+      MYSQL_SERVICE_DB_NAME: nacos
+      MYSQL_SERVICE_PORT: 3306
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: root
+      NACOS_APPLICATION_PORT: 8848
+    volumes:
+      - /usr/local/nacos/logs/:/home/nacos/logs
+      - /usr/local/nacos/plugins/:/home/nacos/plugins
+    #links: 
+      #- mysql
+    ports:
+      - 8848:8848
+      - 9848:9848
+      - 9849:9849
+    depends_on:
+      - mysql
+    networks:
+      - dev_net
+
+networks:
+  dev_net: 
+    external:
+      name: app_net
