@@ -7,6 +7,6 @@ LABEL description="Java 8"
 EXPOSE 88
 
 # 将主机中的jar包添加到镜像中
-ADD  xxxcloud-gateway/target/xxxcloud-gateway-1.0.jar xxxcloud-gateway-1.0.jar
+ADD  /xxxcloud-gateway-1.0.jar xxxcloud-gateway-1.0.jar
 # 运行jar包
 ENTRYPOINT ["java", "-jar","xxxcloud-gateway-1.0.jar"]
