@@ -1,0 +1,11 @@
+# 以jdk8为基础镜像
+FROM openjdk:8
+# 描述
+LABEL description="Java 8"
+
+# 暴露接口
+EXPOSE 8000
+# 将主机中的jar包添加到镜像中
+ADD target/xxxcloud-service-payment-1.0.jar xxxcloud-service-payment-1.0.jar
+# 运行jar包
+ENTRYPOINT ["java","-Dspring.profiles.active=sit", "-jar","xxxcloud-service-payment-1.0.jar"]
