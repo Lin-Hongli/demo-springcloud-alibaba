@@ -27,7 +27,7 @@ public class PaymentFeignClient implements IPaymentFeignClient {
 
     @Override
     //@GetMapping("/payment/payOrder")
-    public Result payOrder(Integer num) {
+    public Result payOrder(@RequestParam Integer num) {
         int i = 1/num;
         return Result.success("支付成功");
     }
