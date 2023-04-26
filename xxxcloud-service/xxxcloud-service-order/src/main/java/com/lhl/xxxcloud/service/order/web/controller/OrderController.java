@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lhl.util.result.Result;
 import com.lhl.xxxcloud.base.emuns.BusinessErrorCodeEnum;
-import com.lhl.xxxcloud.base.exception.BusinessException;
+import com.lhl.xxxcloud.base.exception.BizException;
 import com.lhl.xxxcloud.service.api.order.model.vo.OrderVO;
 import com.lhl.xxxcloud.service.order.model.entity.Order;
 import com.lhl.xxxcloud.service.order.model.query.OrderQuery;
@@ -91,7 +91,7 @@ public class OrderController {
         queryWrapper.lambda().eq(Order::getId,order.getId());
         boolean update = orderService.update(order, queryWrapper);
         if(!update){
-            throw new BusinessException(BusinessErrorCodeEnum.USER10010003,order.getId());
+            throw new BizException(BusinessErrorCodeEnum.USER10010003,order.getId());
         }
         return Result.success();
     }

@@ -39,9 +39,6 @@ public class Result<T> implements Serializable {
      */
 //    private String errorMessage;
 
-    /**
-     * 用户消息
-     */
     private Date time= new Date(System.currentTimeMillis());
 
     /**

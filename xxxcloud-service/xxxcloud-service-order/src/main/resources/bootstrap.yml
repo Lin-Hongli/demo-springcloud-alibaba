@@ -15,7 +15,7 @@ spring:
 seata:
   application-id: seata-cilent-order
   enabled: true
-  # 这里的配置对应 seataServer.properties 中的 service.vgroupMapping.storage-service-group=default
+  # 这里的配置对应 seataServer.properties 中的 service.vgroupMapping.default_tx_group=default
   tx-service-group: default_tx_group
   #enable-auto-data-source-proxy: true
   # 数据源代理模式，使用AT模式

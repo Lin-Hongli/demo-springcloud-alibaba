@@ -2,7 +2,7 @@ package com.lhl.xxxcloud.service.demo.web;
 
 
 import com.lhl.xxxcloud.base.emuns.ErrorCodeEnum;
-import com.lhl.xxxcloud.base.exception.BusinessException;
+import com.lhl.xxxcloud.base.exception.BizException;
 import com.lhl.util.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -69,9 +69,9 @@ public class GlobalExceptionHandler {
 	/**
 	 * 业务异常
 	 */
-	@ExceptionHandler(BusinessException.class)
+	@ExceptionHandler(BizException.class)
 	@ResponseStatus(HttpStatus.OK)
-	public Result<Object> businessException(BusinessException e) {
+	public Result<Object> businessException(BizException e) {
 		log.error("业务异常={}", e.getMessage(), e);
 		return Result.fail(e.getCode(), e.getMessage());
 	}
