@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.lhl.xxxcloud</groupId>
+        <artifactId>xxxcloud-parent</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>com.lhl.xxxcloud.framework</groupId>
+    <artifactId>xxxcloud-framework</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+
+    <name>xxxcloud-framework</name>
+    <description>xxxcloud项目framework模块</description>
+
+    <modules>
+        <module>xxxcloud-framework-redisson</module>
+        <module>xxxcloud-framework-web</module>
+    </modules>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.lhl.xxxcloud.common</groupId>
+            <artifactId>xxxcloud-common-util</artifactId>
+        </dependency>
+    </dependencies>
+</project>

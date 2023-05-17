@@ -25,4 +25,22 @@
             <artifactId>xxxcloud-service-api-payment</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <!-- 生成jar包的名字，记得和Dockerfile文件里面的名字对应 -->
+        <finalName>${artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

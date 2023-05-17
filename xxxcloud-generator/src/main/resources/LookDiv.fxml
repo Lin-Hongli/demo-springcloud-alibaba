@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="284.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lhl.javafxTest.javafx.LookDivTools.LookDivController">
+   <children>
+      <GridPane layoutX="6.0" prefHeight="167.0" prefWidth="665.0">
+         <children>
+            <TextField fx:id="table" prefHeight="150.0" prefWidth="350.0" promptText="" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="0" minWidth="10.0" prefWidth="53.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <Button fx:id="generateBtn" alignment="CENTER" layoutX="242.0" layoutY="215.0" mnemonicParsing="false" onAction="#generateAction" prefHeight="48.0" prefWidth="187.0" text="生成" textFill="#0058ff">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="openFileBtn" alignment="CENTER" layoutX="526.0" layoutY="215.0" mnemonicParsing="false" onAction="#openFileAction" prefHeight="48.0" prefWidth="130.0" text="复制" textFill="#0058ff">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

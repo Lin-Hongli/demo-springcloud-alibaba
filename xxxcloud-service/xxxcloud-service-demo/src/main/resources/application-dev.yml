@@ -17,3 +17,7 @@ logging:
   #包配置及日志级别
   level:
     com.lhl: trace
+
+user:
+  name: linhongli
+  age: 23

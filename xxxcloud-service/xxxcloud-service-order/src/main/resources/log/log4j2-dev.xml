@@ -23,7 +23,7 @@
         hostName : 本地机器名
         hostAddress : 本地ip地址-->
         <property name="LOG_PATTERN" value="%style{%date{yyyy年MM月dd日 HH:mm:ss.SSS}} 线程:[%thread] 日志级别:%highlight{%-5level} 类名:%style{%logger{36}}{bright,yellow} - 日志消息:%highlight{%msg}%n%style{%throwable}{red}" />
-        <property name="FILE_PATH">D:\log</property> <!--日志储存路径-->
+        <property name="FILE_PATH">/logs</property> <!--日志储存路径-->
         <property name="FILE_NAME">demo项目</property> <!--文件名-->
     </properties>
 

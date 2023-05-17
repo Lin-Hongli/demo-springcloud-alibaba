@@ -3,7 +3,7 @@ spring:
     nacos:
       discovery:
         server-addr: ${NACOS_HOST:127.0.0.1}:8848   # 注册中心地址
-        namespace: dceacf9e-5e64-4935-af3f-cd7f567331a5
+#        namespace: dceacf9e-5e64-4935-af3f-cd7f567331a5
       config:
         server-addr: ${NACOS_HOST:127.0.0.1}:8848  # 配置中心地址
         file-extension: yaml    # 配置中心的配置格式
@@ -16,7 +16,7 @@ seata:
   application-id: seata-cilent-order
   enabled: true
   # 这里的配置对应 seataServer.properties 中的 service.vgroupMapping.default_tx_group=default
-  tx-service-group: default_tx_group
+#  tx-service-group: default_tx_group
   #enable-auto-data-source-proxy: true
   # 数据源代理模式，使用AT模式
   #data-source-proxy-mode: AT
@@ -27,7 +27,7 @@ seata:
       server-addr: http://${NACOS_HOST:127.0.0.1}:8848
       username: nacos
       password: nacos
-      namespace: dceacf9e-5e64-4935-af3f-cd7f567331a5
+#      namespace: dceacf9e-5e64-4935-af3f-cd7f567331a5
       # 微服务必须在一个组，否则服务发现不了，但Seata-server 可以在不同的组中
       group: DEFAULT_GROUP
   config:
@@ -36,7 +36,7 @@ seata:
       server-addr: http://${NACOS_HOST:127.0.0.1}:8848
       username: nacos
       password: nacos
-      namespace: dceacf9e-5e64-4935-af3f-cd7f567331a5
+#      namespace: dceacf9e-5e64-4935-af3f-cd7f567331a5
       # 微服务必须在一个组，否则服务发现不了，但Seata-server 可以在不同的组中
       group: DEFAULT_GROUP
       data-id: seataServer.properties

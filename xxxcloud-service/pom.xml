@@ -36,6 +36,11 @@
             <groupId>com.lhl.xxxcloud.common</groupId>
             <artifactId>xxxcloud-common-base</artifactId>
         </dependency>
+        <!--xxxcloud-framework-->
+        <dependency>
+            <groupId>com.lhl.xxxcloud.framework</groupId>
+            <artifactId>xxxcloud-framework-web</artifactId>
+        </dependency>
         <!-- spring-cloud -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

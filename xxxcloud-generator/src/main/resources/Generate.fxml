@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="284.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lhl.xxxcloud.generator.core.GenerateController">
+   <children>
+      <GridPane layoutX="6.0" prefHeight="167.0" prefWidth="610.0">
+         <children>
+            <Label prefHeight="35.0" prefWidth="55.0" text="地址:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <TextField fx:id="localhost" prefHeight="15.0" prefWidth="225.0" promptText="连接地址" text="127.0.0.1" GridPane.rowIndex="0" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="55.0" text="端口:" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+            <TextField fx:id="port" prefHeight="15.0" prefWidth="225.0" promptText="端口号" text="3306" GridPane.rowIndex="0" GridPane.columnIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="55.0" text="账号:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="userName" prefHeight="15.0" prefWidth="225.0" promptText="账号" text="root" GridPane.rowIndex="1" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="55.0" text="密码:" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+            <TextField fx:id="password" prefHeight="15.0" prefWidth="225.0" promptText="密码" text="root" GridPane.rowIndex="1" GridPane.columnIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="55.0" text="数据库:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="dataBase" prefHeight="15.0" prefWidth="225.0" promptText="数据库" GridPane.rowIndex="2" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="55.0" text="表*:" GridPane.rowIndex="2" GridPane.columnIndex="2" />
+            <TextField fx:id="table" prefHeight="15.0" prefWidth="225.0" promptText="表名" GridPane.rowIndex="2" GridPane.columnIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TextField>
+
+
+            <Label prefHeight="35.0" prefWidth="55.0" text="组织:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="organization" prefHeight="15.0" prefWidth="225.0" promptText="组织(com.xxx)" GridPane.rowIndex="3" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="55.0" text="模块名:" GridPane.rowIndex="3"  GridPane.columnIndex="2"/>
+            <TextField fx:id="moduleName" prefHeight="15.0" prefWidth="225.0" promptText="模块名(sys、sso...)" GridPane.rowIndex="3" GridPane.columnIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="55.0" text="实体名*:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="entityName" prefHeight="15.0" prefWidth="225.0" promptText="实体名(User、Teacher...)" GridPane.rowIndex="4" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label prefHeight="35.0" prefWidth="55.0" text="作者:" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+            <TextField fx:id="author" prefHeight="15.0" prefWidth="225.0" promptText="非必填" GridPane.rowIndex="4" GridPane.columnIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" prefWidth="55.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="0.0" prefWidth="250.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="0.0" prefWidth="55.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="0.0" prefWidth="250.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="55.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" />
+         </rowConstraints>
+      </GridPane>
+      <Button fx:id="generateBtn" alignment="CENTER" layoutX="92.0" layoutY="205.0" mnemonicParsing="false" onAction="#generateAction" prefHeight="50.0" prefWidth="150.0" text="生成" textFill="#0058ff">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="openFileBtn" alignment="CENTER" layoutX="413.0" layoutY="205.0" mnemonicParsing="false" onAction="#openFileAction" prefHeight="50.0" prefWidth="150.0" text="打开文件" textFill="#0058ff">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

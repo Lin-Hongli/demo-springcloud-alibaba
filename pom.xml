@@ -31,6 +31,8 @@
         <module>xxxcloud-gateway</module>
         <module>xxxcloud-oauth</module>
         <module>xxxcloud-sso</module>
+        <module>xxxcloud-framework</module>
+        <module>xxxcloud-generator</module>
     </modules>
 
     <properties>
@@ -71,7 +73,8 @@
         <velocity.version>2.0</velocity.version>
         <versions-maven>2.7</versions-maven>
         <log4j.version>1.2.17</log4j.version>
-
+        <!--redisson-->
+        <redisson-spring-boot-starter.version>3.17.1</redisson-spring-boot-starter.version>
     </properties>
 
 
@@ -198,6 +201,24 @@
                 <groupId>com.lhl.xxxcloud.common</groupId>
                 <artifactId>xxxcloud-common-base</artifactId>
                 <version>${xxxcloud.version}</version>
+            </dependency>
+            <!--framework-module-->
+            <dependency>
+                <groupId>com.lhl.xxxcloud.framework</groupId>
+                <artifactId>xxxcloud-framework-redisson</artifactId>
+                <version>${xxxcloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lhl.xxxcloud.framework</groupId>
+                <artifactId>xxxcloud-framework-web</artifactId>
+                <version>${xxxcloud.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson-spring-boot-starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
