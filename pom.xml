@@ -311,6 +311,13 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <!--指定资源目录，并且将其标记为需要过滤（这个标记代表需要替换掉资源文件中的占位符-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
     <!-- 不同的打包环境 -->
@@ -319,7 +326,12 @@
         <profile>
             <id>dev</id>
             <properties>
-                <profileActive>dev</profileActive>
+                <spring.profiles.active>dev</spring.profiles.active>
+                <nacos.regist.addr>127.0.0.1:8848</nacos.regist.addr>
+                <nacos.regist.namespace>0a7995b1-ebcb-4239-b938-3b617d7209ee</nacos.regist.namespace>
+
+                <nacos.config.addr>127.0.0.1:8848</nacos.config.addr>
+                <nacos.config.namespace>0a7995b1-ebcb-4239-b938-3b617d7209ee</nacos.config.namespace>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -329,21 +341,33 @@
         <profile>
             <id>sit</id>
             <properties>
-                <profileActive>sit</profileActive>
+                <spring.profiles.active>sit</spring.profiles.active>
+                <nacos.regist.addr>192.168.50.3:8848</nacos.regist.addr>
+                <nacos.regist.namespace>c9aef601-88c7-427b-8a50-1ac4d6093dd9</nacos.regist.namespace>
+                <nacos.config.addr>192.168.50.3:8848</nacos.config.addr>
+                <nacos.config.namespace>c9aef601-88c7-427b-8a50-1ac4d6093dd9</nacos.config.namespace>
             </properties>
         </profile>
         <!-- UAT用户验收测试环境 -->
         <profile>
             <id>uat</id>
             <properties>
-                <profileActive>uat</profileActive>
+                <spring.profiles.active>uat</spring.profiles.active>
+                <nacos.regist.addr>192.168.50.3:8848</nacos.regist.addr>
+                <nacos.regist.namespace>4cfe4b1f-d8aa-4ca1-87d8-754a4825c4fe</nacos.regist.namespace>
+                <nacos.config.addr>192.168.50.3:8848</nacos.config.addr>
+                <nacos.config.namespace>4cfe4b1f-d8aa-4ca1-87d8-754a4825c4fe</nacos.config.namespace>
             </properties>
         </profile>
         <!-- PRD生产环境 -->
         <profile>
             <id>prd</id>
             <properties>
-                <profileActive>prd</profileActive>
+                <spring.profiles.active>prd</spring.profiles.active>
+                <nacos.regist.addr></nacos.regist.addr>
+                <nacos.regist.namespace></nacos.regist.namespace>
+                <nacos.config.addr></nacos.config.addr>
+                <nacos.config.namespace></nacos.config.namespace>
             </properties>
         </profile>
     </profiles>

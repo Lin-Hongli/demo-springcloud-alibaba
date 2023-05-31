@@ -17,5 +17,5 @@ ADD ./target/xxxcloud-service-order.jar xxxcloud-service-order-1.0.jar
 # 指定时区，否则容器内时间会少8小时
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-# 运行jar包
+# 启动脚本
 ENTRYPOINT ["java","-Dspring.profiles.active=sit", "-jar","xxxcloud-service-order-1.0.jar"]

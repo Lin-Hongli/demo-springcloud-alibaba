@@ -1,45 +1,48 @@
+server:
+  port: 10400
 spring:
+  application:
+    name: @pom.artifactId@
+  profiles:
+    active: @spring.profiles.active@
   cloud:
+    bootstrap:
+      enabled: true
     nacos:
       discovery:
-        server-addr: ${NACOS_HOST:127.0.0.1}:8848   # 注册中心地址
-#        namespace: dceacf9e-5e64-4935-af3f-cd7f567331a5
+        # 注册中心地址
+        server-addr: @nacos.regist.addr@
+        namespace: @nacos.regist.namespace@
+      #不同种类配置之间，优先级按顺序如下：主配置 > 扩展配置(extension-configs) > 共享配置(shared-configs)
       config:
-        server-addr: ${NACOS_HOST:127.0.0.1}:8848  # 配置中心地址
-        file-extension: yaml    # 配置中心的配置格式
+        # 配置中心地址
+        #server-addr: ${NACOS_HOST:127.0.0.1}:8848
+        server-addr: @nacos.config.addr@
+        namespace: @nacos.config.namespace@ #Namespace区分环境
+        # 配置中心的配置格式
+        file-extension: yml
+        group: XXXCLOUD_GROUP
+        # 共享配置，各应⽤之间共享的配置，不应指定group，也就是应归⼊DEFAULT_GROUP这个公共分组。
+        shared-configs:
+          - data-id: mysql-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            #group: DEFAULT_GROUP
+            refresh: true
+          - data-id: redis-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            refresh: true
+          - data-id: seata-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            refresh: true
+        # 常规配置文件，用于应用的特殊配置，可覆盖共享配置
+        # 优先级大于shared-configs，在shared-configs之后加载
+        extension-configs:
+          - data-id: nacos-config-advanced.yaml
+            group: XXXCLOUD_GROUP #group区分不同应⽤
+            refresh: true
+
     sentinel:
       transport:
         #sentinel控制台地址
         dashboard: localhost:8080
 
-seata:
-  application-id: seata-cilent-order
-  enabled: true
-  # 这里的配置对应 seataServer.properties 中的 service.vgroupMapping.default_tx_group=default
-#  tx-service-group: default_tx_group
-  #enable-auto-data-source-proxy: true
-  # 数据源代理模式，使用AT模式
-  #data-source-proxy-mode: AT
-  registry:
-    type: nacos
-    nacos:
-      application: seata-server
-      server-addr: http://${NACOS_HOST:127.0.0.1}:8848
-      username: nacos
-      password: nacos
-#      namespace: dceacf9e-5e64-4935-af3f-cd7f567331a5
-      # 微服务必须在一个组，否则服务发现不了，但Seata-server 可以在不同的组中
-      group: DEFAULT_GROUP
-  config:
-    type: nacos
-    nacos:
-      server-addr: http://${NACOS_HOST:127.0.0.1}:8848
-      username: nacos
-      password: nacos
-#      namespace: dceacf9e-5e64-4935-af3f-cd7f567331a5
-      # 微服务必须在一个组，否则服务发现不了，但Seata-server 可以在不同的组中
-      group: DEFAULT_GROUP
-      data-id: seataServer.properties
 
 
 #management:

@@ -2,7 +2,7 @@
 <configuration monitorInterval="5" status="OFF">
     <properties>
         <property name="LOG_PATTERN" value="%date{yyyy年MM月dd日 HH:mm:ss.SSS} 线程:[%thread] 日志级别:%-5level 类名:%logger{36} - 日志消息:%msg%n" />
-        <property name="FILE_PATH">D:\log</property>
+        <property name="FILE_PATH">/logs</property>
         <property name="FILE_NAME">demo项目</property>
     </properties>
 

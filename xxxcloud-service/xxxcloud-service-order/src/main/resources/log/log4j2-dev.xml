@@ -7,22 +7,34 @@
     <!--变量配置-->
     <properties>
         <!--格式化输出:
-        %d或%date{yyyy-MM-dd HH:mm:ss, SSS} : 日志生产时间,输出到毫秒的时间
-        %-5level : 输出日志级别，-5表示左对齐并且固定输出5个字符，如果不足在右边补0
-        %c或%logger{36} : Java全类名，{36}最长36个字符
         %F : Java类名
-        %C : Logger的名称
-        %t : 输出当前线程名称
-        %p : 日志输出格式
-        %m或%msg : 日志内容，即 logger.info("message")
-        %n : 换行符
-        %L : 行号
-        %M : 日志方法名
-        %l : 输出语句所在的行数, 包括类名、方法名、文件名、行数
-        %thread或%t : 表示线程名
-        hostName : 本地机器名
-        hostAddress : 本地ip地址-->
-        <property name="LOG_PATTERN" value="%style{%date{yyyy年MM月dd日 HH:mm:ss.SSS}} 线程:[%thread] 日志级别:%highlight{%-5level} 类名:%style{%logger{36}}{bright,yellow} - 日志消息:%highlight{%msg}%n%style{%throwable}{red}" />
+        %p/%level 日志级别
+        %c/%logger Java全类名，eg:%logger{36}（{36}最长36个字符）
+        %C/%class Logger调用者的全限定类名
+        %d/%date{yyyy-MM-dd HH:mm:ss, SSS} : 日志生产时间,输出到毫秒的时间
+        %highlight 高亮颜色
+        %l/%location 调用位置（输出语句所在的行数, 包括类名、方法名、文件名、行数）
+        %L/%line 行号
+        %m/%msg/%message 日志内容，即 logger.info("message")
+        %M/%methode 调用方法（日志方法名） ***
+        %maker/%marker的全限定名
+        %n 输出平台相关的换行符,如'\n' '\r\n'
+        %pid/%processId 进程ID
+        %level/%p 日志级别，eg:%-5level(-5表示左对齐并且固定输出5个字符，如果不足在右边补空格)
+        %r JVM启动后经过的微秒
+        %t/%tn/%thread/%threadName 当前线程名称
+        %T/%tid/%threadId 线程ID
+        %tp/%threadPriority 线程优先级
+        %x/%NDC 线程Context堆栈
+        %hostName 本地机器名
+        %hostAddress 本地ip地址
+
+        %5 若字符长度小于5，则右边用空格填充
+        %-5 若字符长度小于5，则左边用空格填充
+        %.15 若字符长度超过15，截去多余字符，
+        %15.15 若字符长度小于5，则右边用空格填充；若字符长度超过15，截去多余字符
+        -->
+        <property name="LOG_PATTERN" value="%style{%date{yyyy-MM-dd HH:mm:ss.SSS}}  %highlight{%-5level}%style{%pid}{magenta} --- [%15thread] %style{%-41logger{36}}{bright,cyan}:%highlight{%msg}%n%style{%throwable}{red}"/>
         <property name="FILE_PATH">/logs</property> <!--日志储存路径-->
         <property name="FILE_NAME">demo项目</property> <!--文件名-->
     </properties>

@@ -5,6 +5,7 @@ services:
     image: jenkins/jenkins
     #启动的容器名
     container_name: jenkins
+    #设置自动重启
     restart: always
     #让container内拥有真正的root权限。否则，container内的root只是外部的一个普通用户权限
     privileged: true
@@ -15,18 +16,18 @@ services:
       JAVA_OPTS: '-Dsun.jnu.encoding=UTF-8,-Dfile.encoding=UTF-8'
     #暴露的端口
     ports:
-      - 9999:8080
+      - 8080:8080
       - 50000:50000
     #挂载目录
     volumes:
       - /usr/bin/docker:/usr/bin/docker
       - /usr/bin/docker-compose:/usr/bin/docker-compose
-      - /var/run/docker.sock:/var/run/docker.sock 
+      - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime
       - /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7
       - /usr/local/jenkins:/var/jenkins_home
       - /usr/local/maven:/usr/local/maven
-      - /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.342.b07-1.el7_9.x86_64:/usr/local/java
+      - /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.372.b07-1.el7_9.x86_64:/usr/local/java
       - /data/app:/data/app
 
   mysql:
@@ -48,8 +49,9 @@ services:
     volumes:
       - /usr/local/mysql/data/db:/var/lib/mysql
       - /usr/local/mysql/conf:/etc/mysql/conf.d
+      - /etc/localtime:/etc/localtime
     networks:
-      - dev_net
+      - my_net
 
   redis:
     image: redis
@@ -72,6 +74,7 @@ services:
     restart: always
     privileged: true
     volumes:
+      # 有可能会出现不能挂载，这个时候用手动拷贝配置文件就行
       - /usr/local/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
       - /usr/local/nginx/conf/cert:/etc/nginx/cert
       - /usr/local/nginx/conf/conf.d:/etc/nginx/conf.d
@@ -98,7 +101,7 @@ services:
     volumes:
       - /usr/local/nacos/logs/:/home/nacos/logs
       - /usr/local/nacos/plugins/:/home/nacos/plugins
-    #links: 
+    #links:
       #- mysql
     ports:
       - 8848:8848
@@ -107,9 +110,23 @@ services:
     depends_on:
       - mysql
     networks:
-      - dev_net
+      - my_net
 
+  #docker可视化工具
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    privileged: true
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /portainer_data:/data
+
+#networks:
+#  dev_net:
+#    external:
+#      name: app_net
 networks:
-  dev_net: 
-    external:
-      name: app_net
+  my_net:
