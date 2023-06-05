@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="284.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lhl.xxxcloud.generator.core.GenerateController">
+<Pane prefHeight="284.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xxxcloud.generator.core.GenerateController">
    <children>
       <GridPane layoutX="6.0" prefHeight="167.0" prefWidth="610.0">
          <children>

@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.lhl.xxxcloud</groupId>
+        <groupId>com.xxxcloud</groupId>
         <artifactId>xxxcloud-parent</artifactId>
         <version>1.0</version>
     </parent>
 
-    <groupId>com.lhl.xxxcloud.common</groupId>
+    <groupId>com.xxxcloud.common</groupId>
     <artifactId>xxxcloud-common</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
@@ -18,7 +18,6 @@
     <description>xxxcloud项目 common公共模块</description>
 
     <modules>
-        <module>xxxcloud-common-base</module>
         <module>xxxcloud-common-core</module>
         <module>xxxcloud-common-util</module>
     </modules>
@@ -46,6 +45,14 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
         </dependency>
         <!--  spring-core
          <dependency>

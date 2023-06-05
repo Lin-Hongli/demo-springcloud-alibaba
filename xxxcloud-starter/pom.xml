@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.xxxcloud</groupId>
+        <artifactId>xxxcloud-parent</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>com.xxxcloud.starter</groupId>
+    <artifactId>xxxcloud-starter</artifactId>
+    <packaging>pom</packaging>
+
+    <name>xxxcloud-starter</name>
+    <description>xxxcloud项目starter模块</description>
+
+    <modules>
+        <module>log4j2-spring-boot-starter</module>
+        <module>log4j2-spring-boot-starter-autoconfigure</module>
+    </modules>
+
+    <dependencies>
+    </dependencies>
+</project>

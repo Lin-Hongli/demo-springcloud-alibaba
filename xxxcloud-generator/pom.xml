@@ -3,12 +3,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.lhl.xxxcloud</groupId>
+    <groupId>com.xxxcloud</groupId>
     <artifactId>xxxcloud-parent</artifactId>
     <version>1.0</version>
   </parent>
 
-  <groupId>com.lhl.xxxcloud.generator</groupId>
+  <groupId>com.xxxcloud.generator</groupId>
   <artifactId>xxxcloud-generator</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
@@ -93,7 +93,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>com.lhl.generator.javafx.Main</mainClass>
+              <mainClass>com.generator.javafx.Main</mainClass>
             </manifest>
           </archive>
         </configuration>

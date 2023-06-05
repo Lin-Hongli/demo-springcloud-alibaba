@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>xxxcloud-service</artifactId>
-        <groupId>com.lhl.xxxcloud.service</groupId>
+        <groupId>com.xxxcloud.service</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -20,10 +20,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.lhl.xxxcloud.service.api</groupId>
+            <groupId>com.xxxcloud.service.api</groupId>
             <artifactId>xxxcloud-service-api-demo</artifactId>
         </dependency>
+
+        <!--引入自定义的start包-->
     </dependencies>
-
-
 </project>

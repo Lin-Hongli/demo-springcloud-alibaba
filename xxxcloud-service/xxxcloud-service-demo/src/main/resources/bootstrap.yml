@@ -1,5 +1,5 @@
 server:
-  port: 10300
+  port: 10900
 spring:
   application:
     name: @pom.artifactId@
@@ -24,12 +24,12 @@ spring:
         group: XXXCLOUD_GROUP
         # 共享配置，各应⽤之间共享的配置，不应指定group，也就是应归⼊DEFAULT_GROUP这个公共分组。
         shared-configs:
-          - data-id: mysql-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+          - data-id: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
             #group: DEFAULT_GROUP
             refresh: true
-          - data-id: redis-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+          - data-id: mysql-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
             refresh: true
-          - data-id: seata-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+          - data-id: redis-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
             refresh: true
         # 常规配置文件，用于应用的特殊配置，可覆盖共享配置
         # 优先级大于shared-configs，在shared-configs之后加载
@@ -59,3 +59,8 @@ feign:
     enabled: true
 
 
+xxxcloud:
+  log4j2:
+    name: a
+    profile:
+      active: hh

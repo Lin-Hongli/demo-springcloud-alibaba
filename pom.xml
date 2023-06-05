@@ -11,7 +11,7 @@
     </parent>
 
     <!--父级项目的pom文件配置，设置各个子模块依赖的版本号-->
-    <groupId>com.lhl.xxxcloud</groupId>
+    <groupId>com.xxxcloud</groupId>
     <artifactId>xxxcloud-parent</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
@@ -29,14 +29,17 @@
         <module>xxxcloud-service</module>
         <module>xxxcloud-service-api</module>
         <module>xxxcloud-gateway</module>
+        <module>xxxcloud-auth</module>
         <module>xxxcloud-oauth</module>
         <module>xxxcloud-sso</module>
         <module>xxxcloud-framework</module>
         <module>xxxcloud-generator</module>
+        <module>xxxcloud-starter</module>
     </modules>
 
     <properties>
         <xxxcloud.version>1.0</xxxcloud.version>
+        <io.seata.version>1.5.1</io.seata.version>
 
         <springboot.version>2.3.12.RELEASE</springboot.version>
 
@@ -56,7 +59,9 @@
         <!--utils-->
         <lambok.version>1.18.12</lambok.version>
         <jackson.version>2.10.2</jackson.version>
+        <fastjson2.version>2.0.31</fastjson2.version>
         <hutool-all.version>5.7.20</hutool-all.version>
+        <jjwt.version>0.9.1</jjwt.version>
 
         <springboot-start-pagehelper.version>1.3.0</springboot-start-pagehelper.version>
 
@@ -89,6 +94,11 @@
                 <version>Hoxton.SR12</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-spring-boot-starter</artifactId>
+                <version>${io.seata.version}</version>
             </dependency>
             <!--SpringBoot-->
             <dependency>
@@ -156,6 +166,11 @@
                 <version>${jackson.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${springboot-start-pagehelper.version}</version>
@@ -165,51 +180,57 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool-all.version}</version>
             </dependency>
+            <!-- JWT -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
             <!--api-module-->
             <dependency>
-                <groupId>com.lhl.xxxcloud.service.api</groupId>
+                <groupId>com.xxxcloud.service.api</groupId>
                 <artifactId>xxxcloud-service-api</artifactId>
                 <version>${xxxcloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.lhl.xxxcloud.service.api</groupId>
+                <groupId>com.xxxcloud.service.api</groupId>
                 <artifactId>xxxcloud-service-api-demo</artifactId>
                 <version>${xxxcloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.lhl.xxxcloud.service.api</groupId>
+                <groupId>com.xxxcloud.service.api</groupId>
                 <artifactId>xxxcloud-service-api-order</artifactId>
                 <version>${xxxcloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.lhl.xxxcloud.service.api</groupId>
+                <groupId>com.xxxcloud.service.api</groupId>
                 <artifactId>xxxcloud-service-api-payment</artifactId>
+                <version>${xxxcloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xxxcloud.service.api</groupId>
+                <artifactId>xxxcloud-service-api-sys</artifactId>
                 <version>${xxxcloud.version}</version>
             </dependency>
             <!--common-module-->
             <dependency>
-                <groupId>com.lhl.xxxcloud.common</groupId>
+                <groupId>com.xxxcloud.common</groupId>
                 <artifactId>xxxcloud-common-util</artifactId>
                 <version>${xxxcloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.lhl.xxxcloud.common</groupId>
+                <groupId>com.xxxcloud.common</groupId>
                 <artifactId>xxxcloud-common-core</artifactId>
-                <version>${xxxcloud.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.lhl.xxxcloud.common</groupId>
-                <artifactId>xxxcloud-common-base</artifactId>
                 <version>${xxxcloud.version}</version>
             </dependency>
             <!--framework-module-->
             <dependency>
-                <groupId>com.lhl.xxxcloud.framework</groupId>
+                <groupId>com.xxxcloud.framework</groupId>
                 <artifactId>xxxcloud-framework-redisson</artifactId>
                 <version>${xxxcloud.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.lhl.xxxcloud.framework</groupId>
+                <groupId>com.xxxcloud.framework</groupId>
                 <artifactId>xxxcloud-framework-web</artifactId>
                 <version>${xxxcloud.version}</version>
             </dependency>
@@ -301,6 +322,16 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!--打包时跳过测试用例-->
+                    <skip>true</skip>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

@@ -1,0 +1,72 @@
+server:
+  port: 10100
+spring:
+  application:
+    name: @pom.artifactId@
+  profiles:
+    active: @spring.profiles.active@
+  cloud:
+    bootstrap:
+      enabled: true
+    nacos:
+      discovery:
+        # 注册中心地址
+        server-addr: @nacos.regist.addr@
+        namespace: @nacos.regist.namespace@
+      #不同种类配置之间，优先级按顺序如下：主配置 > 扩展配置(extension-configs) > 共享配置(shared-configs)
+      config:
+        # 配置中心地址
+        #server-addr: ${NACOS_HOST:127.0.0.1}:8848
+        server-addr: @nacos.config.addr@
+        namespace: @nacos.config.namespace@ #Namespace区分环境
+        # 配置中心的配置格式
+        file-extension: yml
+        group: XXXCLOUD_GROUP
+        # 共享配置，各应⽤之间共享的配置，不应指定group，也就是应归⼊DEFAULT_GROUP这个公共分组。
+        shared-configs:
+          - data-id: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            #group: DEFAULT_GROUP
+            refresh: true
+          - data-id: redis-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            refresh: true
+        # 常规配置文件，用于应用的特殊配置，可覆盖共享配置
+        # 优先级大于shared-configs，在shared-configs之后加载
+        extension-configs:
+          - data-id: nacos-config-advanced.yaml
+            group: XXXCLOUD_GROUP #group区分不同应⽤
+            refresh: true
+    sentinel:
+      # 取消控制台懒加载
+      eager: true
+      transport:
+        # 控制台地址
+        dashboard: 127.0.0.1:8718
+      # nacos配置持久化
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            dataId: sentinel-ruoyi-gateway
+            groupId: XXXCLOUD_GROUP
+            data-type: json
+            rule-type: flow
+
+xxxcloud:
+  security:
+    client:
+      - client-id: sword
+        path-patterns:
+          - /sword/**
+      - client-id: saber
+        path-patterns:
+          - /saber/**
+  token:
+    sign-key: 请配置32位签名提高安全性
+  xss:
+    enabled: true
+    skip-url:
+      - /weixin
+  tenant:
+    column: tenant_id
+    tables:
+      - blade_notice

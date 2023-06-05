@@ -1,5 +1,5 @@
 server:
-  port: 10400
+  port: 10500
 spring:
   application:
     name: @pom.artifactId@
@@ -24,6 +24,9 @@ spring:
         group: XXXCLOUD_GROUP
         # 共享配置，各应⽤之间共享的配置，不应指定group，也就是应归⼊DEFAULT_GROUP这个公共分组。
         shared-configs:
+          - data-id: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            #group: DEFAULT_GROUP
+            refresh: true
           - data-id: mysql-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
             #group: DEFAULT_GROUP
             refresh: true

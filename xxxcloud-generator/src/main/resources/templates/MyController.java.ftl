@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import ${cfg.Organization}.${cfg.ModuleName}.core.BusinessErrorCodeEnum;
 import ${cfg.Organization}.${cfg.ModuleName}.core.BusinessException;
-import ${cfg.Organization}.${cfg.ModuleName}.core.Result;
+import ${cfg.Organization}.${cfg.ModuleName}.core.R;
 import ${package.Entity}.${entity};
 import ${cfg.PackageQuery}.${cfg.EntityQuery};
 import ${cfg.PackageVO}.${cfg.EntityVO};
@@ -64,10 +64,10 @@ public class ${table.controllerName} {
     */
     @PostMapping(value = "/save")
     @ApiOperation(value = "新增", notes = "传入${entity}Query")
-    public Result<Object> save(@Validated @RequestBody ${entity}Query ${table.entityPath}Query) {
+    public R<Object> save(@Validated @RequestBody ${entity}Query ${table.entityPath}Query) {
         ${entity} ${table.entityPath} = new ${entity}();
         BeanUtils.copyProperties(${table.entityPath}Query, ${table.entityPath});
-        return Result.success(${table.entityPath}Service.save(${table.entityPath}));
+        return R.ok(${table.entityPath}Service.save(${table.entityPath}));
     }
 
     /**
@@ -75,8 +75,8 @@ public class ${table.controllerName} {
     */
     @PostMapping(value = "/remove")
     @ApiOperation(value = "删除", notes = "传入id")
-        public Result<Object> remove(@RequestParam(name = "id") @NotEmpty(message = "id不能为空") String id) {
-        return Result.success(${table.entityPath}Service.removeById(Long.valueOf(id)));
+        public R<Object> remove(@RequestParam(name = "id") @NotEmpty(message = "id不能为空") String id) {
+        return R.ok(${table.entityPath}Service.removeById(Long.valueOf(id)));
     }
 
     /**
@@ -84,7 +84,7 @@ public class ${table.controllerName} {
     */
     @PostMapping("/update")
     @ApiOperation(value = "修改", notes = "传入${entity}Query")
-    public Result<Object> update(@Validated(${entity}Query.Update.class) @RequestBody ${entity}Query ${table.entityPath}Query) {
+    public R<Object> update(@Validated(${entity}Query.Update.class) @RequestBody ${entity}Query ${table.entityPath}Query) {
         ${entity} ${table.entityPath} = new ${entity}();
         BeanUtils.copyProperties(${table.entityPath}Query, ${table.entityPath});
         ${table.entityPath}.setId(Long.valueOf(${table.entityPath}Query.getId()));
@@ -95,20 +95,20 @@ public class ${table.controllerName} {
         if (!update) {
             throw new BusinessException(BusinessErrorCodeEnum.USER10010003, ${table.entityPath}.getId());
         }
-        return Result.success();
+        return R.ok();
     }
 
     /**
     * 详情
     */
-    @ApiOperation(value = "根据id查询(接口说明)", httpMethod = "GET", response = Result.class, notes = "1.0.0版本")
+    @ApiOperation(value = "根据id查询(接口说明)", httpMethod = "GET", response = R.class, notes = "1.0.0版本")
     @ApiParam(required = true, name = "id(参数名称)", value = "这是一个id(参数具体描述)")
     @GetMapping(path = "/query")
-    public Result<Object> query(@RequestParam(name = "id") @NotEmpty(message = "id不能为空") String id) {
+    public R<Object> query(@RequestParam(name = "id") @NotEmpty(message = "id不能为空") String id) {
         ${entity} ${table.entityPath} = ${table.entityPath}Service.getById(Long.valueOf(id));
         ${entity}VO ${table.entityPath}VO = new ${entity}VO();
         BeanUtils.copyProperties(${table.entityPath}, ${table.entityPath}VO);
-        return Result.success(${table.entityPath}VO);
+        return R.ok(${table.entityPath}VO);
     }
 
     /**
@@ -116,7 +116,7 @@ public class ${table.controllerName} {
     */
     @ApiOperation(value = "根据id集合查询")
     @GetMapping("/list")
-    public Result<Object> list() {
+    public R<Object> list() {
         List<${entity}> ${table.entityPath}List = ${table.entityPath}Service.list();
         List<${entity}VO> ${table.entityPath}VOList = new ArrayList<>();
         ${table.entityPath}List.forEach(item -> {
@@ -124,7 +124,7 @@ public class ${table.controllerName} {
             BeanUtils.copyProperties(item, ${table.entityPath}VO);
             ${table.entityPath}VOList.add(${table.entityPath}VO);
         });
-        return Result.success(${table.entityPath}VOList);
+        return R.ok(${table.entityPath}VOList);
     }
 
     /**
@@ -132,7 +132,7 @@ public class ${table.controllerName} {
     */
     @ApiOperation(value = "分页查询", notes = "分页查询")
     @GetMapping("/page")
-    public Result<Object> page(@RequestParam(defaultValue = "1") Integer current,
+    public R<Object> page(@RequestParam(defaultValue = "1") Integer current,
     @RequestParam(defaultValue = "10") Integer size) {
         Page<${entity}> p = new Page<>();
         p.setCurrent(current);
@@ -148,7 +148,7 @@ public class ${table.controllerName} {
         }).collect(Collectors.toList());
 
         ${table.entityPath}VoPage.setRecords(${table.entityPath}VOList);
-        return Result.success(${table.entityPath}VoPage);
+        return R.ok(${table.entityPath}VoPage);
     }
 
     /**
@@ -156,10 +156,10 @@ public class ${table.controllerName} {
     */
     @PostMapping("/submit")
     @ApiOperation(value = "新增或修改", notes = "传入${entity}Query")
-    public Result<Object> submit(@Validated @RequestBody ${entity}Query ${table.entityPath}Query) {
+    public R<Object> submit(@Validated @RequestBody ${entity}Query ${table.entityPath}Query) {
         ${entity} ${table.entityPath} = new ${entity}();
         BeanUtils.copyProperties(${table.entityPath}Query, ${table.entityPath});
-        return Result.success(${table.entityPath}Service.saveOrUpdate(${table.entityPath}));
+        return R.ok(${table.entityPath}Service.saveOrUpdate(${table.entityPath}));
     }
 }
 </#if>

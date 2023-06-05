@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.lhl.xxxcloud</groupId>
+        <groupId>com.xxxcloud</groupId>
         <artifactId>xxxcloud-parent</artifactId>
         <version>1.0</version>
     </parent>
 
-    <groupId>com.lhl.xxxcloud.service</groupId>
+    <groupId>com.xxxcloud.service</groupId>
     <artifactId>xxxcloud-service</artifactId>
     <packaging>pom</packaging>
 
@@ -17,28 +17,25 @@
     <description>xxxcloud项目service模块</description>
 
     <modules>
-        <module>xxxcloud-service-order</module>
         <module>xxxcloud-service-demo</module>
+        <module>xxxcloud-service-order</module>
         <module>xxxcloud-service-payment</module>
+        <module>xxxcloud-service-sys</module>
     </modules>
 
     <dependencies>
         <!-- xxxcloud-common -->
         <dependency>
-            <groupId>com.lhl.xxxcloud.common</groupId>
+            <groupId>com.xxxcloud.common</groupId>
             <artifactId>xxxcloud-common-util</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.lhl.xxxcloud.common</groupId>
+            <groupId>com.xxxcloud.common</groupId>
             <artifactId>xxxcloud-common-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.lhl.xxxcloud.common</groupId>
-            <artifactId>xxxcloud-common-base</artifactId>
         </dependency>
         <!--xxxcloud-framework-->
         <dependency>
-            <groupId>com.lhl.xxxcloud.framework</groupId>
+            <groupId>com.xxxcloud.framework</groupId>
             <artifactId>xxxcloud-framework-web</artifactId>
         </dependency>
         <!-- spring-cloud -->
@@ -67,23 +64,11 @@
         <dependency>
             <groupId>io.seata</groupId>
             <artifactId>seata-spring-boot-starter</artifactId>
-            <version>1.5.1</version>
         </dependency>
         <!-- spring-boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions><!-- 去掉springboot默认配置,springboot默认是用logback-->
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!-- 引入log4j2依赖 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -148,11 +133,27 @@
     </dependencies>
 
     <build>
+        <resources>
+            <!--指定资源目录，并且将其标记为需要过滤（这个标记代表需要替换掉资源文件中的占位符-->
+           <!-- <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>-->
+        </resources>
+        <!-- 生成jar包的名字，记得和Dockerfile文件里面的名字对应 -->
+        <finalName>${artifactId}</finalName>
         <plugins>
             <!--热部署插件-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <fork>true</fork>
                     <addResources>true</addResources>

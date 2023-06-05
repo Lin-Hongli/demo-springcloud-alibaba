@@ -1,0 +1,21 @@
+# 基础镜像使用jdk8
+FROM openjdk:8
+# 描述
+LABEL description="Java 8"
+# 作者
+MAINTAINER LinHongli<2381555134@qq.com>
+# 在基础镜像中创建目录
+RUN mkdir -p /xxxcloud/demo
+# 设置为工作目录（进入容器时默认进入这个目录）
+WORKDIR /xxxcloud/demo
+# 映射文件
+VOLUME /tmp
+# 子容器对外暴露端口，这里指jar包启动的端口
+EXPOSE 10300
+# 将当前目录下的jar包复制到docker镜像容器的当前目录（工作目录）下
+ADD ./target/xxxcloud-demo-0.0.1-SNAPSHOT.jar xxxcloud-demo-1.0.jar
+# 指定时区，否则容器内时间会少8小时
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# 启动脚本
+ENTRYPOINT ["java","-Dspring.profiles.active=dev","-Dfile.encoding=utf-8","-jar","xxxcloud-demo-1.0.jar"]

@@ -1,0 +1,30 @@
+version: '3.3'
+services:
+  xxxcloud-demo:
+    # 指定镜像名
+    image: java/xxxcloud-demo:1.0
+    # 指定容器名称
+    container_name: xxxcloud-demo
+    privileged: true
+    restart: always
+    network_mode: host
+    build:
+      context: .
+      dockerfile: DockerFile #指定dockerFile文件
+    environment:
+      - NACOS_HOST=nacos
+      - MYSQL_HOST=mysql
+    # 指定服务运行的端口
+    ports:
+      - 10300:10300
+    # 指定容器中需要挂载的文件
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /logs:/logs
+#    networks:
+#      - my_net
+#
+#networks:
+#  my_net:
+#    external:
+#      name: my_net

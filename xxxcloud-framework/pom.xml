@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.lhl.xxxcloud</groupId>
+        <groupId>com.xxxcloud</groupId>
         <artifactId>xxxcloud-parent</artifactId>
         <version>1.0</version>
     </parent>
 
-    <groupId>com.lhl.xxxcloud.framework</groupId>
+    <groupId>com.xxxcloud.framework</groupId>
     <artifactId>xxxcloud-framework</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
@@ -25,8 +25,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.lhl.xxxcloud.common</groupId>
+            <groupId>com.xxxcloud.common</groupId>
             <artifactId>xxxcloud-common-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

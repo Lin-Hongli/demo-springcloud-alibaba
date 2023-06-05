@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.lhl.xxxcloud.service</groupId>
+        <groupId>com.xxxcloud.service</groupId>
         <artifactId>xxxcloud-service</artifactId>
         <version>1.0</version>
     </parent>
@@ -16,31 +16,15 @@
     <dependencies>
         <!--服务需要实现的API-->
         <dependency>
-            <groupId>com.lhl.xxxcloud.service.api</groupId>
+            <groupId>com.xxxcloud.service.api</groupId>
             <artifactId>xxxcloud-service-api-order</artifactId>
         </dependency>
         <!--服务需要调用的API-->
         <dependency>
-            <groupId>com.lhl.xxxcloud.service.api</groupId>
+            <groupId>com.xxxcloud.service.api</groupId>
             <artifactId>xxxcloud-service-api-payment</artifactId>
         </dependency>
     </dependencies>
 
-    <build>
-        <!-- 生成jar包的名字，记得和Dockerfile文件里面的名字对应 -->
-        <finalName>${artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+
 </project>

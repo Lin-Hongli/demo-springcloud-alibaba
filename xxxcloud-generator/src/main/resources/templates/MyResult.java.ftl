@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
 * <p>
-* The class Common Result.
+* The class Common R.
 * </p>
 *
 * @author ${author}
@@ -19,7 +19,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class Result<T> implements Serializable {
+public class R<T> implements Serializable {
 
     private static final long serialVersionUID = -2368446516546812379L;
 
@@ -36,16 +36,8 @@ public class Result<T> implements Serializable {
     /**
     * 用户消息
     */
-    private String message;
+    private String msg;
 
-    /**
-    * 用户消息
-    */
-    //    private String errorMessage;
-
-    /**
-    * 用户消息
-    */
     private Date time= new Date(System.currentTimeMillis());
 
     /**
@@ -53,73 +45,73 @@ public class Result<T> implements Serializable {
     */
     private T data;
 
-    public Result(){}
+    public R(){}
 
-    public Result(T data){
+    private R(T data){
         this.data = data;
     }
 
-    public Result(String code,String message){
+    private R(String code, String msg){
         this.code = code;
-        this.message = message;
+        this.msg = msg;
     }
 
-    public Result(ErrorCodeEnum resultCodeEnum){
+    private R(ErrorCodeEnum resultCodeEnum){
         this.code = resultCodeEnum.getCode();
-        this.message = resultCodeEnum.getMessage();
+        this.msg = resultCodeEnum.getMessage();
     }
 
-    public Result(ErrorCodeEnum resultCodeEnum, T data) {
+    private R(ErrorCodeEnum resultCodeEnum, T data) {
         this.code = resultCodeEnum.getCode();
-        this.message = resultCodeEnum.getMessage();
+        this.msg = resultCodeEnum.getMessage();
         this.data = data;
     }
 
-    public static <T> Result<T> success() {
-        Result<T> result = new Result(ErrorCodeEnum.SUCCESS);
-        result.success = true;
-        return result;
-    }
-    public static <T> Result<T> success(T data) {
-        Result<T> result = new Result(ErrorCodeEnum.SUCCESS,data);
+    public static <T> R<T> ok() {
+        R<T> result = new R(ErrorCodeEnum.SUCCESS);
         result.success = true;
         return result;
     }
 
-    public static <T> Result<T> success(String code,String message) {
-        Result<T> result = new Result(code,message);
+    public static <T> R<T> ok(T data) {
+        R<T> result = new R(ErrorCodeEnum.SUCCESS,data);
         result.success = true;
         return result;
     }
 
-    public static <T> Result<T> success(ErrorCodeEnum resultCodeEnum) {
-        Result<T> result = new Result(resultCodeEnum);
+    public static <T> R<T> ok(String code, String msg) {
+        R<T> result = new R(code,msg);
         result.success = true;
         return result;
     }
 
-    public static <T> Result<T> success(ErrorCodeEnum resultCodeEnum, T data) {
-        Result<T> result = new Result(resultCodeEnum,data);
+    public static <T> R<T> ok(ErrorCodeEnum resultCodeEnum) {
+        R<T> result = new R(resultCodeEnum);
         result.success = true;
         return result;
     }
 
-    public static <T> Result<T> fail(String code,String message) {
-        Result<T> result = new Result(code,message);
+    public static <T> R<T> ok(ErrorCodeEnum resultCodeEnum, T data) {
+        R<T> result = new R(resultCodeEnum,data);
+        result.success = true;
+        return result;
+    }
+
+    public static <T> R<T> fail(String msg) {
+        R<T> result = new R(ErrorCodeEnum.INTERNAL.getCode(),msg);
         result.success = false;
         return result;
     }
 
-    public static <T> Result<T> fail(ErrorCodeEnum resultCodeEnum) {
-        Result<T> result = new Result(resultCodeEnum);
+    public static <T> R<T> fail(ErrorCodeEnum resultCodeEnum) {
+        R<T> result = new R(resultCodeEnum);
         result.success = false;
         return result;
     }
 
-    public static <T> Result<T> fail(ErrorCodeEnum resultCodeEnum, T data) {
-        Result<T> result = new Result(resultCodeEnum);
+    public static <T> R<T> fail(ErrorCodeEnum resultCodeEnum, String msg) {
+        R<T> result = new R(resultCodeEnum.getCode(),msg);
         result.success = false;
         return result;
     }
 }
-
